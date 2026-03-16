@@ -1,0 +1,122 @@
+<div class="demo-wrapper">
+  <mat-tab-group>
+    <mat-tab label="One-Way and Two-Way">
+      <div class="tab-content">
+        <mat-card class="demo-card">
+          <mat-card-header>
+            <mat-card-title>Data Binding Types</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="binding-demo">
+              <div class="demo-row">
+                <h4>Interpolation</h4>
+                <p class="output">{{ title }}</p>
+              </div>
+
+              <div class="demo-row">
+                <h4>Property Binding</h4>
+                <img [src]="imageUrl" [alt]="title" class="demo-img">
+              </div>
+
+              <div class="demo-row">
+                <h4>Event Binding</h4>
+                <button mat-flat-button color="primary" (click)="onClick()">
+                  <mat-icon>touch_app</mat-icon>
+                  Click me ({{ clickCount }})
+                </button>
+              </div>
+
+              <div class="demo-row">
+                <h4>Two-Way Binding</h4>
+                <div class="two-way">
+                  <input [(ngModel)]="inputValue" placeholder="Escribe...">
+                  <span class="preview">{{ inputValue }}</span>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Class and Style Binding">
+      <div class="tab-content">
+        <mat-card class="demo-card">
+          <mat-card-header>
+            <mat-card-title>Class and Style Binding</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="binding-demo">
+              <div class="demo-row">
+                <h4>Class Binding</h4>
+                <div class="box" [class.active]="isActive">
+                  {{ isActive ? 'Activo' : 'Inactivo' }}
+                </div>
+                <button mat-stroked-button (click)="isActive = !isActive">
+                  Toggle Active
+                </button>
+              </div>
+
+              <div class="demo-row">
+                <h4>Style Binding</h4>
+                <div class="box" [style.background-color]="bgColor">
+                  Background: {{ bgColor }}
+                </div>
+                <button mat-stroked-button (click)="changeColor()">
+                  Change Color
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="trackBy Demo">
+      <div class="tab-content">
+        <mat-card class="demo-card">
+          <mat-card-header>
+            <mat-card-title>trackBy en ngFor</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="binding-demo">
+              <div class="controls">
+                <button mat-flat-button color="primary" (click)="shuffleItems()">
+                  <mat-icon>shuffle</mat-icon>
+                  Shuffle
+                </button>
+                <button mat-flat-button color="accent" (click)="updateItems()">
+                  <mat-icon>update</mat-icon>
+                  Update Values
+                </button>
+                <button mat-stroked-button (click)="resetItems()">Reset</button>
+              </div>
+
+              <div class="lists">
+                <div class="list-section">
+                  <h4>Sin trackBy</h4>
+                  <div class="item-list">
+                    @for (item of itemsWithoutTrack; track $index) {
+                      <div class="item">ID: {{ item.id }} - {{ item.name }}</div>
+                    }
+                  </div>
+                  <p class="render-info">Render count: {{ renderCountWithout }}</p>
+                </div>
+
+                <div class="list-section">
+                  <h4>Con trackBy</h4>
+                  <div class="item-list">
+                    @for (item of itemsWithTrack; track $index) {
+                      <div class="item">ID: {{ item.id }} - {{ item.name }}</div>
+                    }
+                  </div>
+                  <p class="render-info">Render count: {{ renderCountWith }}</p>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

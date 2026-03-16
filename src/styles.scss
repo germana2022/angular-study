@@ -1,0 +1,127 @@
+@use '@angular/material' as mat;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --accent: #10b981;
+  --background: #0f172a;
+  --surface: #1e293b;
+  --surface-light: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border: #475569;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --success: #10b981;
+}
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$violet-palette,
+        tertiary: mat.$green-palette,
+      ),
+      typography: 'IBM Plex Sans',
+      density: 0,
+    )
+  );
+}
+
+body {
+  color-scheme: dark;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+code, pre {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.mat-mdc-card {
+  --mdc-elevated-card-container-color: var(--surface);
+  border-radius: 12px !important;
+}
+
+.mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-flat-button, .mat-mdc-stroked-button {
+  border-radius: 8px !important;
+}
+
+.mat-mdc-form-field {
+  --mdc-filled-text-field-container-color: var(--surface-light);
+}
+
+.mat-mdc-tab-group {
+  --mat-tab-header-inactive-label-text-color: var(--text-secondary);
+  --mat-tab-header-active-label-text-color: var(--primary);
+  --mat-tab-header-active-ripple-color: var(--primary);
+  --mat-tab-header-inactive-ripple-color: var(--primary);
+}
+
+.mat-mdc-accordion {
+  background: transparent;
+}
+
+.mat-expansion-panel {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mat-mdc-list-item {
+  --mat-list-item-label-text-color: var(--text-secondary);
+}
+
+.mat-mdc-chip {
+  --mdc-chip-elevated-container-color: var(--surface-light);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-light);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--border);
+  }
+}
+
+::selection {
+  background: var(--primary);
+  color: white;
+}

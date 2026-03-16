@@ -1,0 +1,193 @@
+@if (topic) {
+  <nav class="breadcrumb">
+    <a routerLink="/">Inicio</a>
+    <mat-icon>chevron_right</mat-icon>
+    <span>{{ topic.category }}</span>
+    <mat-icon>chevron_right</mat-icon>
+    <span class="current">{{ topic.title }}</span>
+  </nav>
+
+  <header class="topic-header">
+    <div class="topic-icon">
+      <mat-icon>{{ topic.icon }}</mat-icon>
+    </div>
+    <div class="topic-title">
+      <h1>{{ topic.title }}</h1>
+      <div class="topic-meta">
+        <mat-chip>{{ topic.category }}</mat-chip>
+        @if (topic.hasDemo) {
+          <mat-chip class="demo-chip">
+            <mat-icon>play_circle</mat-icon>
+            Demo Interactivo
+          </mat-chip>
+        }
+      </div>
+    </div>
+  </header>
+
+  <mat-card class="summary-card">
+    <mat-card-content>
+      <mat-icon>lightbulb</mat-icon>
+      <p>{{ topic.summary }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <section class="content-section">
+    <h2>
+      <mat-icon>description</mat-icon>
+      Explicación Detallada
+    </h2>
+    <div class="description" [innerHTML]="formatDescription(topic.description)"></div>
+  </section>
+
+  @if (topic.codeExample) {
+    <section class="content-section">
+      <h2>
+        <mat-icon>code</mat-icon>
+        Ejemplo de Código
+      </h2>
+      <app-code-block [code]="topic.codeExample"></app-code-block>
+    </section>
+  }
+
+  <section class="content-section">
+    <h2>
+      <mat-icon>check_circle</mat-icon>
+      Puntos Clave
+    </h2>
+    <mat-list class="key-points">
+      @for (point of topic.keyPoints; track point) {
+        <mat-list-item>
+          <mat-icon matListItemIcon>check</mat-icon>
+          <span matListItemTitle>{{ point }}</span>
+        </mat-list-item>
+      }
+    </mat-list>
+  </section>
+
+  @if (topic.whenToUse) {
+    <section class="content-section">
+      <h2>
+        <mat-icon>schedule</mat-icon>
+        Cuándo Usarlo
+      </h2>
+      <p class="when-to-use">{{ topic.whenToUse }}</p>
+    </section>
+  }
+
+  @if (topic.commonMistakes && topic.commonMistakes.length > 0) {
+    <section class="content-section">
+      <h2>
+        <mat-icon>warning</mat-icon>
+        Errores Comunes
+      </h2>
+      <mat-list class="mistakes-list">
+        @for (mistake of topic.commonMistakes; track mistake) {
+          <mat-list-item>
+            <mat-icon matListItemIcon class="mistake-icon">cancel</mat-icon>
+            <span matListItemTitle>{{ mistake }}</span>
+          </mat-list-item>
+        }
+      </mat-list>
+    </section>
+  }
+
+  @if (topic.interviewQuestion) {
+    <section class="content-section interview-section">
+      <h2>
+        <mat-icon>help</mat-icon>
+        Pregunta de Entrevista
+      </h2>
+      <mat-card class="interview-card">
+        <mat-card-content>
+          <div class="question">
+            <strong>P:</strong> {{ topic.interviewQuestion }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  }
+
+  @if (topic.hasDemo) {
+    <app-demo-container>
+      <div demo-code>
+        @switch (topic.demoComponent) {
+          @case ('change-detection') {
+            <app-code-block [code]="demoCode['changeDetection']"></app-code-block>
+          }
+          @case ('observables') {
+            <app-code-block [code]="demoCode['observables']"></app-code-block>
+          }
+          @case ('lifecycle-hooks') {
+            <app-code-block [code]="demoCode['lifecycleHooks']"></app-code-block>
+          }
+          @case ('forms') {
+            <app-code-block [code]="demoCode['forms']"></app-code-block>
+          }
+          @case ('routing') {
+            <app-code-block [code]="demoCode['routing']"></app-code-block>
+          }
+          @case ('di') {
+            <app-code-block [code]="demoCode['di']"></app-code-block>
+          }
+          @case ('directives') {
+            <app-code-block [code]="demoCode['directives']"></app-code-block>
+          }
+          @case ('viewchild') {
+            <app-code-block [code]="demoCode['viewchild']"></app-code-block>
+          }
+          @case ('data-binding') {
+            <app-code-block [code]="demoCode['dataBinding']"></app-code-block>
+          }
+        }
+      </div>
+      <div demo-preview>
+        @switch (topic.demoComponent) {
+          @case ('change-detection') {
+            <app-change-detection-demo></app-change-detection-demo>
+          }
+          @case ('observables') {
+            <app-observables-demo></app-observables-demo>
+          }
+          @case ('lifecycle-hooks') {
+            <app-lifecycle-hooks-demo></app-lifecycle-hooks-demo>
+          }
+          @case ('forms') {
+            <app-forms-demo></app-forms-demo>
+          }
+          @case ('routing') {
+            <app-routing-demo></app-routing-demo>
+          }
+          @case ('di') {
+            <app-di-demo></app-di-demo>
+          }
+          @case ('directives') {
+            <app-directives-demo></app-directives-demo>
+          }
+          @case ('viewchild') {
+            <app-viewchild-demo></app-viewchild-demo>
+          }
+          @case ('data-binding') {
+            <app-data-binding-demo></app-data-binding-demo>
+          }
+        }
+      </div>
+    </app-demo-container>
+  }
+
+  <div class="navigation">
+    <a mat-stroked-button routerLink="/" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+      Volver al Inicio
+    </a>
+  </div>
+} @else {
+  <div class="not-found">
+    <mat-icon>error_outline</mat-icon>
+    <h2>Tópico no encontrado</h2>
+    <p>El tópico que buscas no existe.</p>
+    <a mat-flat-button color="primary" routerLink="/">
+      Volver al Inicio
+    </a>
+  </div>
+}
