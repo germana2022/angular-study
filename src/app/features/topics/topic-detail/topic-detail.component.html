@@ -100,9 +100,24 @@
       </h2>
       <mat-card class="interview-card">
         <mat-card-content>
-          <div class="question">
-            <strong>P:</strong> {{ topic.interviewQuestion }}
-          </div>
+          <div class="question"><strong>P:</strong> {{ topic.interviewQuestion }}</div>
+
+          @if (topic.interviewAnswerShort) {
+            <div class="answer-short">
+              <strong>Respuesta Corta:</strong>
+              <p>{{ topic.interviewAnswerShort }}</p>
+            </div>
+          }
+
+          @if (topic.interviewAnswerStructured) {
+            <div class="answer-structured">
+              <strong>Respuesta Estructurada:</strong>
+              <div
+                class="structured-content"
+                [innerHTML]="formatDescription(topic.interviewAnswerStructured)"
+              ></div>
+            </div>
+          }
         </mat-card-content>
       </mat-card>
     </section>
@@ -186,8 +201,6 @@
     <mat-icon>error_outline</mat-icon>
     <h2>Tópico no encontrado</h2>
     <p>El tópico que buscas no existe.</p>
-    <a mat-flat-button color="primary" routerLink="/">
-      Volver al Inicio
-    </a>
+    <a mat-flat-button color="primary" routerLink="/"> Volver al Inicio </a>
   </div>
 }

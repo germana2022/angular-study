@@ -14,7 +14,7 @@
   a {
     color: var(--primary);
     text-decoration: none;
-    
+
     &:hover {
       text-decoration: underline;
     }
@@ -142,7 +142,8 @@ h1 {
   }
 }
 
-.key-points, .mistakes-list {
+.key-points,
+.mistakes-list {
   background: var(--surface);
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -184,6 +185,69 @@ h1 {
     font-size: 16px;
     line-height: 1.7;
     color: var(--text-primary);
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .answer-short {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+
+    strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+  }
+
+  .answer-structured {
+    strong {
+      color: var(--primary);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .structured-content {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+
+      :deep(strong) {
+        color: var(--text-primary);
+      }
+
+      :deep(code) {
+        background: var(--surface-light);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 14px;
+      }
+
+      :deep(pre) {
+        background: var(--surface-light);
+        padding: 16px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 12px 0;
+
+        code {
+          background: transparent;
+          padding: 0;
+        }
+      }
+    }
   }
 }
 

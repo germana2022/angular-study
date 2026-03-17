@@ -11,6 +11,8 @@ export interface Topic {
   whenToUse?: string;
   commonMistakes?: string[];
   interviewQuestion?: string;
+  interviewAnswerShort?: string;
+  interviewAnswerStructured?: string;
   hasDemo: boolean;
   demoComponent?: string;
 }
